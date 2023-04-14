@@ -1,0 +1,17 @@
+.i18n {
+    display: flex;
+    align-items: center;
+}
+
+.form {
+    flex: 1;
+}
+
+.submit-btn {
+    margin: 0 12px;
+}
+
+.result-textarea {
+    flex: 1;
+    height: calc(100vh - 100px)
+}
