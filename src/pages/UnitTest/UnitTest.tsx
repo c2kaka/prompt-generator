@@ -4,6 +4,8 @@ import {useState} from "react";
 
 const { TextArea } = Input;
 
+const SEPARATOR = '```';
+
 
 function UnitTest() {
   const rolePrompt = 'You are a frontend developer.';
@@ -11,10 +13,10 @@ function UnitTest() {
   const providersPrompt = `Provide jasmine spy for all injected services.
 In the unit test, remember to add the following configurations:
 Use NO_ERRORS_SCHEMA from '@angular/core' in schemas.
-Import FormsModule from '@angular/forms'.
-Import MockModule from 'tdc-ui/mock'.
-Import MockModule from 'app/mock'.
-Import of and throwError from 'rxjs'.`;
+import FormsModule from '@angular/forms';
+import { MockModule as TuiMock } from 'tdc-ui/mock';
+import MockModule from 'app/mock';
+import of and throwError from 'rxjs';`;
 
   const getWriteTestPrompt = (methods: string | undefined) => {
     if (methods == undefined) {
@@ -35,7 +37,9 @@ Import of and throwError from 'rxjs'.`;
     const role = form.getFieldValue('rolePrompt');
     const providers = form.getFieldValue('providersPrompt');
     const code = `Here is the code:
-${form.getFieldValue('code')}`;
+${SEPARATOR}
+${form.getFieldValue('code')}
+${SEPARATOR}`;
     const writeTestPrompt = getWriteTestPrompt(form.getFieldValue('methodsPrompt'));
     const coveragePrompt = form.getFieldValue('coveragePrompt');
     const result = [role, providers, writeTestPrompt, coveragePrompt, code].filter(_item => _item != undefined).join('\n\n');
