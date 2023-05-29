@@ -26,7 +26,7 @@ const items: TabsProps['items'] = [
 
 function App() {
   return (
-    <Tabs defaultActiveKey="1" items={items}/>
+    <Tabs className='p-5' defaultActiveKey="1" items={items}/>
   )
 }
 
